@@ -1,0 +1,59 @@
+body {
+  font-family: Helvetica, Tahoma, Arial, STXihei, "华文细黑", "Microsoft YaHei", "微软雅黑", SimSun, "宋体", Heiti, "黑体", sans-serif;
+  background: url('./static/bakemonogatari.webp') no-repeat center center fixed;
+  background-size: cover;
+  font-size: 18px;
+}
+a {
+  color: #3b8bba;
+  text-decoration: none;
+}
+a:visited {
+  color: #265778;
+}
+header {
+  padding: .5em 0;
+  background-color: rgba(46, 62, 73, .8);
+}
+#logo {
+  color: #eee;
+  font-size: 1.2em;
+  padding-right: 1em;
+}
+#limit {
+  width: 3em;
+}
+.form {
+  text-align: center;
+}
+.form>label {
+  color: #eee;
+  padding-left: 1em;
+}
+.form>button {
+  margin-left: 1em;
+}
+.table {
+  margin: 1em auto;
+  background-color: rgba(255, 255, 255, .9);
+  color: #333;
+}
+.center {
+  text-align: center;
+}
+.center>img {
+  height: 1em;
+}
+.footer {
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  text-align: center;
+  font-size: 1.2em;
+  color: #eee;
+  padding: .5rem 0;
+  background-color: rgba(46, 62, 73, .8);
+}
+.footer>button {
+  margin-left: 1rem;
+}

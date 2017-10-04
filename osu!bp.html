@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <link rel="icon" href="https://avatars2.githubusercontent.com/u/31220039?v=4&s=25">
+  <meta name="viewport" content="width=device-width,initial-scale=1.0">
+  <title>osu!BP query | query best performance and download</title>
+  <link href="http://lib.baomitu.com/pure/1.0.0/pure-min.css" rel="stylesheet">
+  <link href="./style.css" rel="stylesheet">
+</head>
+
+<body>
+<body>
+  <div id="app">
+    <header>
+      <form class="form pure-form" @submit.prevent="submit">
+        <span id="logo"> BP query </span>
+        <input v-model="name" type="text" placeholder="Username" required>
+
+        <label for="limit">limit</label>
+        <input id="limit" v-model="limit" required>
+
+        <label for="mode">mode</label>
+        <select v-model="mode">
+          <option value="0">osu!standard</option>
+          <option value="1">osu!taiko</option>
+          <option value="2">osu!catch</option>
+          <option value="3">osu!mania</option>
+        </select>
+
+        <button type="submit" class="pure-button pure-button-primary">Query</button>
+      </form>
+    </header>
+    <table v-show="records.length" class="table pure-table">
+      <thead>
+        <tr>
+          <th>#</th>
+          <th>Rank</th>
+          <th>Beatmap</th>
+          <th>Mod</th>
+          <th>PP</th>
+          <th class="center">
+            <img src="./static/osu_icon.png" />
+          </th>
+          <th class="center">
+            <img src="./static/bloodcat_icon.png" />
+          </th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr v-for="(record, index) in records">
+          <td>{{ index + 1 }}</td>
+          <td class="center">
+            <img :src="rankImgUrl(record.rank)">
+          </td>
+          <td>
+            <a :href="beatmapUrl(record.bid)" target="_blank">
+             {{ record.title }} [{{ record.diff }}]
+             </a>
+          </td>
+          <td>{{ record.mods }}</td>
+          <td>{{ record.pp }}</td>
+          <td>
+            <a :href="ppyUrl(record.sid)" target="_blank">
+              <img src="./static/cloud-download.svg" />
+            </a>
+          </td>
+          <td>
+            <a :href="bloodcatUrl(record.sid)" target="_blank">
+              <img src="./static/desktop-download.svg" />
+            </a>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    <div class="footer">
+      <span v-if="tips && !loading && !records.length">{{ tips }}</span>
+      <template v-if="loading">
+        <span> Loading </span>
+        <span>{{ animatedString }}</span>
+      </template>
+      <template v-if="records.length && !loading">
+        <span>Now you can download all map from</span>
+        <button class="pure-button" @click="downloadAll('ppy')">ppy</button>
+      </template>
+    </div>
+  </div>
+  <script src="http://lib.baomitu.com/vue/2.4.4/vue.min.js"></script>
+  <script src="./index.js"></script>
+</body>
+</html>
