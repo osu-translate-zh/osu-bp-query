@@ -37,28 +37,40 @@ var app = new Vue({
   methods: {
     submit: function() {
       this.loading = true;
+      this.records = [];
 
-      // test use
-      window.setTimeout(function() {
-        this.records.push({
-          bid: 953586,
-          sid: 443751,
-          title: 'Chino(CV.Minase Inori) - Shinsaku no Shiawase wa Kochira!',
-          diff: 'Happy~!',
-          mods: 'HD HR',
-          pp: 243,
-          rank: 'A',
+      var self = this;
+      var args = '?user=' + this.name +
+                 '&limit=' + this.limit +
+                 '&mode=' + this.mode;
+      fetch('https://www.osupink.org/api/get_bp.php' + args, {
+        method: 'GET',
+      }).then(function(res){
+        return res.json();
+      }).then(function(scores){
+        if (!scores.length) {
+          self.tips = 'no records, please check the username.';
+        }
+        scores.forEach(function(score) {
+          var record = {
+            bid: score.beatmap_id,
+            sid: 443751, // TODO
+            title: 'the truth that you leave', // TODO
+            diff: 'piano', // TODO
+            mods: score.mods,
+            pp: parseInt(score.pp),
+            rank: score.rank,
+          };
+          self.records.push(record);
         });
-        this.loading = false;
-      }.bind(this),3000);
-      
-      // fetch('').then(function(res){
-      //   this.loading = false;
-      //   if (!res) {
-      //     this.tips = 'serve error, please try again later.';
-      //   }
-        // this.records = JSON.parse(res);
-      // });
+        self.loading = false;
+      }).catch(function(error) {
+        self.loading = false;
+        console.log(error);
+        if (!res.ok) {
+          self.tips = 'serve error, please try again later.';
+        }
+      });
     },
     sliceNext: function() {
       this.animatedString = '......'.slice(-(this.i++ % 6));
