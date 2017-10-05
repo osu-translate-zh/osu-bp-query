@@ -53,17 +53,23 @@ function fetchRecords(name, limit, mode) {
 
 Vue.use(Toasted, {
    theme: "primary", 
-   position: "top-center", 
+   position: "bottom-center", 
    duration : 4000,
 });
 
+Vue.use(VueRouter);
+
+var router = new VueRouter({
+  mode: 'hash',
+  routes: [
+    { path: '/:name' }
+  ]
+});
+
 var app = new Vue({
+  router,
   el: '#app',
   data: {
-    name: '',
-    limit: 20,
-    mode: 0,
-
     records: [],
   },
   computed: {
@@ -73,6 +79,38 @@ var app = new Vue({
         if (a.pp > b.pp) return -1;
         return 0;
       });
+    },
+    name: {
+      get: function() {
+        return this.$route.params.name || '';
+      },
+      set: function(name) {
+        this.$router.push({
+          path: name,
+          query: this.$route.query,
+        });
+        window.scrollTo(0, 0);
+      },
+    },
+    limit: {
+      get: function() {
+        return this.$route.query.limit || 20;
+      },
+      set: function(limit) {
+        this.updateQueryPart({
+          limit,
+        });
+      },
+    },
+    mode: {
+      get: function() {
+        return this.$route.query.mode || 0;
+      },
+      set: function(mode) {
+        this.updateQueryPart({
+          mode,
+        });
+      },
     },
   },
   methods: {
@@ -130,8 +168,28 @@ var app = new Vue({
         document.documentElement.appendChild(iframe);
       });
     },
+    updateQueryPart(part) {
+      let query = Object.assign({}, this.$route.query, part);
+      Object.keys(query).forEach(key => {
+        if (!query[key]) {
+          delete query[key]
+        }
+      });
+      this.$router.replace({
+        path: this.$route.path,
+        query,
+      })
+    },
   },
   mounted: function() {
-    this.$toasted.show('welcome to BP query!');
+    setTimeout(function() {
+      this.$toasted.show('welcome to BP query!');
+    }.bind(this),1000);
+
+    if (this.name) {
+      this.submit();
+    } else {
+      this.$refs.name.focus();
+    }
   },
 });

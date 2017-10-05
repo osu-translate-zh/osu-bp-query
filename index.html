@@ -16,13 +16,13 @@
     <header>
       <form class="form pure-form" @submit.prevent="submit">
         <span id="logo"> osu! BP query </span>
-        <input v-model="name" type="text" placeholder="Username" required>
+        <input v-model.lazy="name" ref="name" type="text" placeholder="Username" required>
 
         <label for="limit">limit</label>
-        <input id="limit" v-model="limit" required>
+        <input id="limit" v-model.lazy="limit" required>
 
         <label for="mode">mode</label>
-        <select v-model="mode">
+        <select v-model.lazy="mode">
           <option value="0">osu!standard</option>
           <option value="1">osu!taiko</option>
           <option value="2">osu!catch</option>
@@ -87,7 +87,9 @@
   <script src="https://cdn.bootcss.com/nprogress/0.2.0/nprogress.min.js"></script>
   <script src="https://cdn.bootcss.com/fetch/2.0.3/fetch.min.js"></script>
   <script src="https://cdn.bootcss.com/vue/2.4.4/vue.min.js"></script>
+  <script src="https://cdn.bootcss.com/vue-router/2.7.0/vue-router.min.js"></script>
   <script src="./vue-toasted.min.js"></script>
+  <script src="./ployfill.js"></script>
   <script src="./index.js"></script>
 </body>
 </html>
