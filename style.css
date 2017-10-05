@@ -33,11 +33,24 @@ header {
 .form>button {
   margin-left: 1em;
 }
+.tips {
+  text-align: center;
+  margin: 1em;
+}
+.tips>span {
+  background-color: #fff;
+  color: #333;
+  font-size: 1.5em;
+  padding: .3em;
+}
 .table {
   margin: 1em auto;
   background-color: rgba(255, 255, 255, .9);
   color: #333;
-  margin-bottom: 4em;
+}
+.download-button {
+  text-align: center;
+  padding: .5em 0;
 }
 .center {
   text-align: center;
@@ -45,16 +58,15 @@ header {
 .center>img {
   height: 1em;
 }
+footer {
+  height: 2rem;
+}
 .footer {
   position: fixed;
   bottom: 0;
   width: 100%;
   text-align: center;
-  font-size: 1.2em;
   color: #eee;
   padding: .5rem 0;
   background-color: rgba(46, 62, 73, .8);
-}
-.footer>button {
-  margin-left: 1rem;
 }

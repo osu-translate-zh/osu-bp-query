@@ -5,7 +5,8 @@
   <link rel="icon" href="https://avatars2.githubusercontent.com/u/31220039?v=4&s=25">
   <meta name="viewport" content="width=device-width,initial-scale=1.0">
   <title>osu!BP query | query best performance and download</title>
-  <link href="https://lib.baomitu.com/pure/1.0.0/pure-min.css" rel="stylesheet">
+  <link href="https://cdn.bootcss.com/pure/1.0.0/pure-min.css" rel="stylesheet">
+  <link href="./nprogress.css" rel="stylesheet">
   <link href="./style.css" rel="stylesheet">
 </head>
 
@@ -14,7 +15,7 @@
   <div id="app">
     <header>
       <form class="form pure-form" @submit.prevent="submit">
-        <span id="logo"> BP query </span>
+        <span id="logo"> osu! BP query </span>
         <input v-model="name" type="text" placeholder="Username" required>
 
         <label for="limit">limit</label>
@@ -31,62 +32,64 @@
         <button type="submit" class="pure-button pure-button-primary">Query</button>
       </form>
     </header>
-    <table v-show="records.length" class="table pure-table">
-      <thead>
-        <tr>
-          <th>#</th>
-          <th>Rank</th>
-          <th>Beatmap</th>
-          <th>Mod</th>
-          <th>PP</th>
-          <th class="center">
-            <img src="./static/osu_icon.png" />
-          </th>
-          <th class="center">
-            <img src="./static/bloodcat_icon.png" />
-          </th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr v-for="(record, index) in records">
-          <td>{{ index + 1 }}</td>
-          <td class="center">
-            <img :src="rankImgUrl(record.rank)">
-          </td>
-          <td>
-            <a :href="beatmapUrl(record.bid)" target="_blank">
-             {{ record.title }} [{{ record.diff }}]
-             </a>
-          </td>
-          <td>{{ record.mods }}</td>
-          <td>{{ record.pp }}</td>
-          <td>
-            <a :href="ppyUrl(record.sid)" target="_blank">
-              <img src="./static/cloud-download.svg" />
-            </a>
-          </td>
-          <td>
-            <a :href="bloodcatUrl(record.sid)" target="_blank">
-              <img src="./static/desktop-download.svg" />
-            </a>
-          </td>
-        </tr>
-      </tbody>
-    </table>
-    <div class="footer">
-      <span v-if="tips && !loading && !records.length">{{ tips }}</span>
-      <template v-if="loading">
-        <span> Loading </span>
-        <span>{{ animatedString }}</span>
-      </template>
-      <template v-if="records.length && !loading">
-        <span>Now you can download all map from</span>
-        <button class="pure-button" @click="downloadAll('ppy')">ppy</button>
-      </template>
+    <div v-show="tips" class="tips">
+      <span>{{ tips }}</span>
     </div>
+    <div v-show="records.length">
+      <table class="table pure-table">
+        <thead>
+          <tr>
+            <th>#</th>
+            <th>Rank</th>
+            <th>Beatmap</th>
+            <th>Mod</th>
+            <th>PP</th>
+            <th class="center">
+              <img src="./static/osu_icon.png" />
+            </th>
+            <th class="center">
+              <img src="./static/bloodcat_icon.png" />
+            </th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr v-for="(record, index) in sortedRecords">
+            <td>{{ index + 1 }}</td>
+            <td class="center">
+              <img :src="rankImgUrl(record.rank)">
+            </td>
+            <td>
+              <a :href="beatmapUrl(record.bid)" target="_blank">
+               {{ record.artist }} - {{ record.title }} [{{ record.diff }}]
+               </a>
+            </td>
+            <td>{{ record.mods }}</td>
+            <td>{{ record.pp }}</td>
+            <td>
+              <a :href="ppyUrl(record.sid)" target="_blank">
+                <img src="./static/cloud-download.svg" />
+              </a>
+            </td>
+            <td>
+              <a :href="bloodcatUrl(record.sid)" target="_blank">
+                <img src="./static/desktop-download.svg" />
+              </a>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+      <div class="download-button">
+        <button class="pure-button" @click="downloadAll()">Download All</button>
+      </div>
+    </div>
+    <footer>
+      <div class="footer">
+      </div>
+    </footer>
   </div>
-  <script src="https://lib.baomitu.com/fetch/2.0.3/fetch.min.js"></script>
-  <script src="https://lib.baomitu.com/vue/2.4.4/vue.min.js"></script>
+  <script src="https://cdn.bootcss.com/nprogress/0.2.0/nprogress.min.js"></script>
+  <script src="https://cdn.bootcss.com/fetch/2.0.3/fetch.min.js"></script>
+  <script src="https://cdn.bootcss.com/vue/2.4.4/vue.min.js"></script>
   <script src="./index.js"></script>
 </body>
 </html>
