@@ -18,10 +18,10 @@ function fetchBeatmapInfo(bid) {
   return fetch('https://www.osupink.org/api/get_bm.php?b=' + bid, {
     method: 'GET',
   }).then(function(res){
-    if (!res.ok) throw new Error('error in fetch beatmap');
+    if (!res.ok) throw new Error('serve error, please try again later.');
     return res.json()
   }).then(function(beatmaps){
-    if (!beatmaps.length) throw new Error('no beatmap: ' + bid);
+    if (!beatmaps.length) throw new Error('beatmapId ' + bid + 'was not found.');
     return beatmaps[0];
   });
 }
@@ -43,19 +43,23 @@ function fetchRecords(name, limit, mode) {
   return fetch('https://www.osupink.org/api/get_bp.php' + query, {
     method: 'GET',
   }).then(function(res){
-    if (!res.ok) throw new Error('error in fetch records');
+    if (!res.ok) throw new Error('serve error, please try again later.');
     return res.json();
   }).then(function(scores){
-    if (!scores.length) throw new Error('no records: ' + name);
+    if (!scores.length) throw new Error('no records, please check the username.');
     return scores;
   });
 }
 
+Vue.use(Toasted, {
+   theme: "primary", 
+   position: "top-center", 
+   duration : 4000,
+});
+
 var app = new Vue({
   el: '#app',
   data: {
-    tips: '',
-
     name: '',
     limit: 20,
     mode: 0,
@@ -103,15 +107,8 @@ var app = new Vue({
       }).catch(function(error){
         console.log(error);
         NProgress.done();
-      });;
-      // vue.showTips('no records, please check the username.');
-      // vue.showTips('serve error, please try again later.');
-    },
-    showTips: function(tips) {
-      this.tips = tips;
-    },
-    clearTips: function() {
-      this.tips = '';
+        vue.$toasted.show(error);
+      });
     },
     beatmapUrl: function(bid) {
       return 'https://osu.ppy.sh/b/' + bid;
@@ -135,6 +132,6 @@ var app = new Vue({
     },
   },
   mounted: function() {
-    // this.showTips('Type username and query BPs.');
+    this.$toasted.show('welcome to BP query!');
   },
 });

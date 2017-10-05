@@ -32,9 +32,6 @@
         <button type="submit" class="pure-button pure-button-primary">Query</button>
       </form>
     </header>
-    <div v-show="tips" class="tips">
-      <span>{{ tips }}</span>
-    </div>
     <div v-show="records.length">
       <table class="table pure-table">
         <thead>
@@ -90,6 +87,7 @@
   <script src="https://cdn.bootcss.com/nprogress/0.2.0/nprogress.min.js"></script>
   <script src="https://cdn.bootcss.com/fetch/2.0.3/fetch.min.js"></script>
   <script src="https://cdn.bootcss.com/vue/2.4.4/vue.min.js"></script>
+  <script src="./vue-toasted.min.js"></script>
   <script src="./index.js"></script>
 </body>
 </html>

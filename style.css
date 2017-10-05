@@ -1,6 +1,6 @@
 body {
   font-family: Helvetica, Tahoma, Arial, STXihei, "华文细黑", "Microsoft YaHei", "微软雅黑", SimSun, "宋体", Heiti, "黑体", sans-serif;
-  background: url('./static/bakemonogatari.webp') no-repeat center center fixed;
+  background: url('https://wx1.sinaimg.cn/large/006fVPCvly1fk7h2yuax1j31hc0u0wvh.jpg') no-repeat center center fixed;
   background-size: cover;
   font-size: 18px;
 }
@@ -32,16 +32,6 @@ header {
 }
 .form>button {
   margin-left: 1em;
-}
-.tips {
-  text-align: center;
-  margin: 1em;
-}
-.tips>span {
-  background-color: #fff;
-  color: #333;
-  font-size: 1.5em;
-  padding: .3em;
 }
 .table {
   margin: 1em auto;
