@@ -61,7 +61,7 @@
                </a>
             </td>
             <td>{{ record.mods }}</td>
-            <td>{{ record.pp }}</td>
+            <td>{{ parseInt(record.pp) }}</td>
             <td>
               <a :href="ppyUrl(record.sid)" target="_blank">
                 <img src="./static/cloud-download.svg" />

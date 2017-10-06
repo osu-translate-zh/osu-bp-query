@@ -132,7 +132,7 @@ var app = new Vue({
               title: beatmap.title,
               diff: beatmap.version,
               mods: score.mods,
-              pp: parseInt(score.pp),
+              pp: score.pp,
               rank: score.rank,
             };
             vue.records.push(record);
@@ -147,6 +147,9 @@ var app = new Vue({
         NProgress.done();
         vue.$toasted.show(error);
       });
+    },
+    parseInt(pp) {
+      return Math.round(pp);
     },
     beatmapUrl: function(bid) {
       return 'https://osu.ppy.sh/b/' + bid;
