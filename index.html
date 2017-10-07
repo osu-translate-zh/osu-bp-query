@@ -13,74 +13,81 @@
 <body>
 <body>
   <div id="app">
-    <header>
-      <form class="form pure-form" @submit.prevent="submit">
-        <span id="logo"> osu! BP query </span>
-        <input v-model.lazy="name" ref="name" type="text" placeholder="Username" required>
+    <div class="page">
+      <header>
+        <form class="form pure-form" @submit.prevent="submit">
+          <span id="logo"> osu! BP query </span>
+          <input v-model.lazy="name" ref="name" type="text" placeholder="Username" required>
 
-        <label for="limit">limit</label>
-        <input id="limit" v-model.lazy="limit" required>
+          <label for="limit">limit</label>
+          <input id="limit" v-model.lazy="limit" required>
 
-        <label for="mode">mode</label>
-        <select v-model.lazy="mode">
-          <option value="0">osu!standard</option>
-          <option value="1">osu!taiko</option>
-          <option value="2">osu!catch</option>
-          <option value="3">osu!mania</option>
-        </select>
+          <label for="mode">mode</label>
+          <select v-model.lazy="mode">
+            <option value="0">osu!standard</option>
+            <option value="1">osu!taiko</option>
+            <option value="2">osu!catch</option>
+            <option value="3">osu!mania</option>
+          </select>
 
-        <button type="submit" class="pure-button pure-button-primary">Query</button>
-      </form>
-    </header>
-    <div v-show="records.length">
-      <table class="table pure-table">
-        <thead>
-          <tr>
-            <th>#</th>
-            <th>Rank</th>
-            <th>Beatmap</th>
-            <th>Mod</th>
-            <th>PP</th>
-            <th class="center">
-              <img src="./static/osu_icon.png" />
-            </th>
-            <th class="center">
-              <img src="./static/bloodcat_icon.png" />
-            </th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr v-for="(record, index) in sortedRecords">
-            <td>{{ index + 1 }}</td>
-            <td class="center">
-              <img :src="rankImgUrl(record.rank)">
-            </td>
-            <td>
-              <a :href="beatmapUrl(record.bid)" target="_blank">
-               {{ record.artist }} - {{ record.title }} [{{ record.diff }}]
-               </a>
-            </td>
-            <td>{{ record.mods }}</td>
-            <td>{{ parseInt(record.pp) }}</td>
-            <td>
-              <a :href="ppyUrl(record.sid)" target="_blank">
-                <img src="./static/cloud-download.svg" />
-              </a>
-            </td>
-            <td>
-              <a :href="bloodcatUrl(record.sid)" target="_blank">
-                <img src="./static/desktop-download.svg" />
-              </a>
-            </td>
-          </tr>
-        </tbody>
-      </table>
-      <div class="download-button">
-        <button class="pure-button" @click="downloadAll()">Download All</button>
+          <button type="submit" class="pure-button pure-button-primary">Query</button>
+        </form>
+      </header>
+      <div v-show="records.length">
+        <table class="table pure-table">
+          <thead>
+            <tr>
+              <th>#</th>
+              <th>Rank</th>
+              <th>Beatmap</th>
+              <th>Mod</th>
+              <th>PP</th>
+              <th class="center">
+                <img src="./static/osu_icon.png" />
+              </th>
+              <th class="center">
+                <img src="./static/bloodcat_icon.png" />
+              </th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr v-for="(record, index) in sortedRecords">
+              <td>{{ index + 1 }}</td>
+              <td class="center">
+                <img :src="rankImgUrl(record.rank)">
+              </td>
+              <td>
+                <a :href="beatmapUrl(record.bid)" target="_blank">
+                 {{ record.artist }} - {{ record.title }} [{{ record.diff }}]
+                 </a>
+              </td>
+              <td>{{ record.mods }}</td>
+              <td>{{ parseInt(record.pp) }}</td>
+              <td>
+                <a :href="ppyUrl(record.sid)" target="_blank">
+                  <img src="./static/cloud-download.svg" />
+                </a>
+              </td>
+              <td>
+                <a :href="bloodcatUrl(record.sid)" target="_blank">
+                  <img src="./static/desktop-download.svg" />
+                </a>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+        <div class="download-button">
+          <button class="pure-button" @click="downloadAll()">Download All</button>
+        </div>
       </div>
     </div>
     <footer>
       <div class="footer">
+        ©2017 osu! BP query
+        <a href="https://github.com/osu-translate-zh/osu-bp-query" target="_blank"> 项目地址 </a>
+        <a href="https://github.com/osu-translate-zh" target="_blank"> osu! 中文翻译组织 </a>
+        <a href="https://github.com/osupink" target="_blank">osu!pink</a>
+        <a href="https://www.wallpapervortex.com/wallpaper-52185_bakemonogatari.html" target="_blank">背景图</a>
       </div>
     </footer>
   </div>

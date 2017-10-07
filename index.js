@@ -54,7 +54,7 @@ function fetchRecords(name, limit, mode) {
 Vue.use(Toasted, {
    theme: "primary", 
    position: "bottom-center", 
-   duration : 4000,
+   duration : 3000,
 });
 
 Vue.use(VueRouter);
@@ -187,7 +187,7 @@ var app = new Vue({
   mounted: function() {
     setTimeout(function() {
       this.$toasted.show('welcome to BP query!');
-    }.bind(this),1000);
+    }.bind(this),3000);
 
     if (this.name) {
       this.submit();

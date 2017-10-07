@@ -1,8 +1,16 @@
 body {
+  font-size: 18px;
   font-family: Helvetica, Tahoma, Arial, STXihei, "华文细黑", "Microsoft YaHei", "微软雅黑", SimSun, "宋体", Heiti, "黑体", sans-serif;
   background: url('https://wx1.sinaimg.cn/large/006fVPCvly1fk7h2yuax1j31hc0u0wvh.jpg') no-repeat center center fixed;
   background-size: cover;
-  font-size: 18px;
+}
+#app {
+  display: flex;
+  min-height: 100vh;
+  flex-direction: column;
+}
+.page {
+  flex: 1 0 auto;
 }
 a {
   color: #3b8bba;
@@ -40,7 +48,7 @@ header {
 }
 .download-button {
   text-align: center;
-  padding: .5em 0;
+  margin: 1em 0;
 }
 .center {
   text-align: center;
@@ -48,15 +56,17 @@ header {
 .center>img {
   height: 1em;
 }
-footer {
-  height: 2rem;
-}
 .footer {
-  position: fixed;
-  bottom: 0;
   width: 100%;
   text-align: center;
   color: #eee;
   padding: .5rem 0;
   background-color: rgba(46, 62, 73, .8);
+}
+footer a {
+  color: #eee;
+  padding-left: 1.5em;
+}
+footer a:visited {
+  color: #eee;
 }
