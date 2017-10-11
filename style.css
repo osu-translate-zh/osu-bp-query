@@ -1,5 +1,5 @@
 body {
-  font-size: 18px;
+  font-size: 14px;
   font-family: Helvetica, Tahoma, Arial, STXihei, "华文细黑", "Microsoft YaHei", "微软雅黑", SimSun, "宋体", Heiti, "黑体", sans-serif;
   background: url('https://wx1.sinaimg.cn/large/006fVPCvly1fk7h2yuax1j31hc0u0wvh.jpg') no-repeat center center fixed;
   background-size: cover;
@@ -27,10 +27,13 @@ a:visited {
   color: #eee;
   text-shadow: 5px 5px 2px #333;
 }
+.form-wrapper {
+  margin: 0 1em;
+}
 .form {
   max-width: 30em;
-  margin: 2em auto;
   padding: 1em 0;
+  margin: 2em auto;
   background-color: rgba(46, 62, 73, .8);
   border-radius: 5px;
 }
@@ -87,4 +90,29 @@ footer a {
 }
 footer a:visited {
   color: #eee;
+}
+@media screen and (max-width: 480px) {
+  #select,
+  #query {
+    margin: 0 auto;
+    display: block;
+  }
+  .form label {
+    padding-left: 1em;
+  }
+}
+@media screen and (max-width: 568px) {
+  body {
+    font-size: 12px;
+  }
+}
+@media screen and (min-width: 768px) {
+  body {
+    font-size: 16px;
+  }
+}
+@media screen and (min-width: 1024px) {
+  body {
+    font-size: 18px;
+  }
 }

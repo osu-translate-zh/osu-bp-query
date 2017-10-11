@@ -16,31 +16,33 @@
   <div id="app">
     <div class="page">
       <div class="header"> osu!BP query </div>
-      <form class="form pure-form pure-form-aligned" @submit.prevent="submit">
-        <div class="pure-control-group">
-          <label for="user">username</label>
-          <input id="user" v-model.lazy="name" ref="name" type="text" placeholder="Username" required>
-        </div>
+      <div class="form-wrapper">
+        <form class="form pure-form pure-form-aligned" @submit.prevent="submit">
+          <div class="pure-control-group">
+            <label for="user">username</label>
+            <input id="user" v-model.lazy="name" ref="name" type="text" placeholder="Username" required>
+          </div>
 
-        <div class="pure-control-group">
-          <label for="limit">limit</label>
-          <input id="limit" v-model.lazy="limit" required>
-        </div>
+          <div class="pure-control-group">
+            <label for="limit">limit</label>
+            <input id="limit" v-model.lazy="limit" required>
+          </div>
 
-        <div class="pure-control-group">
-          <label for="mode">mode</label>
-          <select v-model.lazy="mode">
-            <option value="0">osu!standard</option>
-            <option value="1">osu!taiko</option>
-            <option value="2">osu!catch</option>
-            <option value="3">osu!mania</option>
-          </select>
-        </div>
+          <div class="pure-control-group">
+            <label for="mode">mode</label>
+            <select id="select" v-model.lazy="mode">
+              <option value="0">osu!standard</option>
+              <option value="1">osu!taiko</option>
+              <option value="2">osu!catch</option>
+              <option value="3">osu!mania</option>
+            </select>
+          </div>
 
-        <div class="pure-controls">
-          <button type="submit" class="pure-button pure-button-primary">Query</button>
-        </div>
-      </form>
+          <div class="pure-controls">
+            <button id="query" type="submit" class="pure-button pure-button-primary">Query</button>
+          </div>
+        </form>
+      </div>
       <div v-show="records.length" class="table-wrapper">
         <table class="table pure-table">
           <thead>
