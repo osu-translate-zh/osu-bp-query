@@ -19,36 +19,50 @@ a {
 a:visited {
   color: #265778;
 }
-header {
-  padding: .5em 0;
+.header {
+  width: 100%;
+  text-align: center;
+  margin: 4rem 0;
+  font-size: 3em;
+  color: #eee;
+  text-shadow: 5px 5px 2px #333;
+}
+.form {
+  max-width: 30em;
+  margin: 2em auto;
+  padding: 1em 0;
   background-color: rgba(46, 62, 73, .8);
+  border-radius: 5px;
+}
+.form label {
+  color: #eee;
+  text-transform: capitalize;
+}
+.form input {
+  margin: 0 auto;
 }
 #logo {
-  color: #eee;
   font-size: 1.2em;
-  padding-right: 1em;
 }
 #limit {
   width: 3em;
 }
-.form {
-  text-align: center;
-}
-.form>label {
-  color: #eee;
-  padding-left: 1em;
-}
-.form>button {
-  margin-left: 1em;
+.table-wrapper {
+  overflow-x: auto;
+  margin: 0 1em;
 }
 .table {
+  max-width: 100%;
   margin: 1em auto;
   background-color: rgba(255, 255, 255, .9);
   color: #333;
 }
+.title {
+  min-width: 20em;
+}
 .download-button {
   text-align: center;
-  margin: 1em 0;
+  margin: 1em 0 2em 0;
 }
 .center {
   text-align: center;
@@ -56,12 +70,16 @@ header {
 .center>img {
   height: 1em;
 }
-.footer {
+footer {
   width: 100%;
   text-align: center;
   color: #eee;
-  padding: .5rem 0;
   background-color: rgba(46, 62, 73, .8);
+}
+.footer {
+  max-width: 50em;
+  line-height: 2rem;
+  margin: auto auto;
 }
 footer a {
   color: #eee;
