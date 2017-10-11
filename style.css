@@ -25,7 +25,7 @@ a:visited {
   margin: 4rem 0;
   font-size: 3em;
   color: #eee;
-  text-shadow: 5px 5px 2px #333;
+  text-shadow: .1em .1em .1em #333;
 }
 .form-wrapper {
   margin: 0 1em;
@@ -96,6 +96,9 @@ footer a:visited {
   #query {
     margin: 0 auto;
     display: block;
+  }
+  .form {
+    font-size: 1.5em;
   }
   .form label {
     padding-left: 1em;
