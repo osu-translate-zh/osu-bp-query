@@ -1,5 +1,5 @@
 function ppyUrl(sid) {
-  return 'https:/osu.ppy.sh/d/' + sid;
+  return 'https://osu.ppy.sh/d/' + sid;
 }
 function bloodcatUrl(sid) {
   return 'http://bloodcat.osupink.org/d/' + sid;
