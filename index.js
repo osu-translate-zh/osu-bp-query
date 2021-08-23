@@ -14,7 +14,7 @@ function sayobotUrl(sid) {
 // }]
 
 function fetchBeatmapInfo(bid) {
-  return fetch('https://www.osupink.org/api/get_bm.php?b=' + bid, {
+  return fetch('https://bp.osu.pink/api/get_bm.php?b=' + bid, {
     method: 'GET',
   }).then(function(res){
     if (!res.ok) throw new Error('serve error, please try again later.');
@@ -39,7 +39,7 @@ function fetchRecords(name, limit, mode) {
   var query = '?user=' + name +
               '&limit=' + limit +
               '&mode=' + mode;
-  return fetch('https://www.osupink.org/api/get_bp.php' + query, {
+  return fetch('https://bp.osu.pink/api/get_bp.php' + query, {
     method: 'GET',
   }).then(function(res){
     if (!res.ok) throw new Error('serve error, please try again later.');
