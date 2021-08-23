@@ -170,6 +170,14 @@ var app = new Vue({
         document.documentElement.appendChild(iframe);
       });
     },
+    downloadAllFromSayobot: function() {
+      this.records.forEach(function(record) {
+        var iframe = document.createElement('iframe');
+        iframe.src = sayobotUrl(record.sid);
+        iframe.style.display = "none";
+        document.documentElement.appendChild(iframe);
+      });
+    },
     updateQueryPart(part) {
       let query = Object.assign({}, this.$route.query, part);
       Object.keys(query).forEach(key => {
