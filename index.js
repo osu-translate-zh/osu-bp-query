@@ -1,10 +1,9 @@
 function ppyUrl(sid) {
   return 'https://osu.ppy.sh/d/' + sid;
 }
-function bloodcatUrl(sid) {
-  return 'http://bloodcat.osupink.org/d/' + sid;
+function sayobotUrl(sid) {
+  return 'https://txy1.sayobot.cn/beatmaps/download/' + sid;
 }
-
 // beatmap api response example:
 // [{
 //   bmid: 953586,
@@ -157,8 +156,8 @@ var app = new Vue({
     ppyUrl: function(bid) {
       return ppyUrl(bid);
     },
-    bloodcatUrl: function(bid) {
-      return bloodcatUrl(bid);
+    sayobotUrl: function(bid) {
+      return sayobotUrl(bid);
     },
     rankImgUrl: function(rank) {
       return 'https://s.ppy.sh/images/' + rank + '_small.png';
