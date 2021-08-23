@@ -1,10 +1,9 @@
 function ppyUrl(sid) {
   return 'https://osu.ppy.sh/d/' + sid;
 }
-function bloodcatUrl(sid) {
-  return 'http://bloodcat.osupink.org/d/' + sid;
+function sayobotUrl(sid) {
+  return 'https://txy1.sayobot.cn/beatmaps/download/' + sid;
 }
-
 // beatmap api response example:
 // [{
 //   bmid: 953586,
@@ -15,7 +14,7 @@ function bloodcatUrl(sid) {
 // }]
 
 function fetchBeatmapInfo(bid) {
-  return fetch('https://www.osupink.org/api/get_bm.php?b=' + bid, {
+  return fetch('https://bp.osu.pink/api/get_bm.php?b=' + bid, {
     method: 'GET',
   }).then(function(res){
     if (!res.ok) throw new Error('serve error, please try again later.');
@@ -40,7 +39,7 @@ function fetchRecords(name, limit, mode) {
   var query = '?user=' + name +
               '&limit=' + limit +
               '&mode=' + mode;
-  return fetch('https://www.osupink.org/api/get_bp.php' + query, {
+  return fetch('https://bp.osu.pink/api/get_bp.php' + query, {
     method: 'GET',
   }).then(function(res){
     if (!res.ok) throw new Error('serve error, please try again later.');
@@ -157,8 +156,8 @@ var app = new Vue({
     ppyUrl: function(bid) {
       return ppyUrl(bid);
     },
-    bloodcatUrl: function(bid) {
-      return bloodcatUrl(bid);
+    sayobotUrl: function(bid) {
+      return sayobotUrl(bid);
     },
     rankImgUrl: function(rank) {
       return 'https://s.ppy.sh/images/' + rank + '_small.png';
@@ -167,6 +166,14 @@ var app = new Vue({
       this.records.forEach(function(record) {
         var iframe = document.createElement('iframe');
         iframe.src = ppyUrl(record.sid);
+        iframe.style.display = "none";
+        document.documentElement.appendChild(iframe);
+      });
+    },
+    downloadAllFromSayobot: function() {
+      this.records.forEach(function(record) {
+        var iframe = document.createElement('iframe');
+        iframe.src = sayobotUrl(record.sid);
         iframe.style.display = "none";
         document.documentElement.appendChild(iframe);
       });
